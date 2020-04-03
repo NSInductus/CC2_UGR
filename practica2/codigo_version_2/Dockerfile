@@ -12,21 +12,14 @@ EXPOSE 8010
 # Establecer el directorio de trabajo
 WORKDIR /
 
-
 # Copiamos el archivo requirements
 COPY requirements.txt /tmp/
 
 # Instalamos lo necesario utilizando el requirements
 RUN pip install --no-cache-dir -r ./tmp/requirements.txt
 
-# Copiamos los archivos necesarios para levantar el microservicio
+# Copiamos los archivos necesarios 
 COPY api_v2.py /src/
-
-# Copiamos los archivos necesarios para levantar el microservicio
-#COPY /tmp/workflow/modeloT.pckl /tmp/workflow/
-
-# Copiamos los archivos necesarios para levantar el microservicio
-#COPY /tmp/workflow/modeloH.pckl /tmp/workflow/
 
 # Cambiar el directorio de trabajo
 WORKDIR /src/

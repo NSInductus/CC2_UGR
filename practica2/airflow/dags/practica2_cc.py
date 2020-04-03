@@ -356,37 +356,7 @@ ArrancarDockerfileV2 = BashOperator(
     dag=dag,
 )
 
-
-
-#cut -d "," -f 1 ./humidity.csv >> /tmp/workflow/nuevo.csv
-#inductus@inductusPC:/tmp/workflow$ cut -d "," -f 1 ./humidity.csv >> /tmp/workflow/humidity-clean.csv
-#inductus@inductusPC:/tmp/workflow$ cut -d "," -f 1,4 ./temperature.csv >> /tmp/workflow/temperature-clean.csv
-#inductus@inductusPC:/tmp/workflow$ cut -d "," -f 1,4 ./humidity.csv >> /tmp/workflow/humidity-clean.csv
-#inductus@inductusPC:/tmp/workflow$ cut -d "," -f 1,4 ./humidity.csv >> /tmp/workflow/humidity-clean.csv
-#inductus@inductusPC:/tmp/workflow$ join -t "," ./humidity-clean.csv ./temperature-clean.csv >> /tmp/workflow/dataset.csv
-
-#sed 's/,/;/g' ./dataset.csv | sed 's/datetime;San Francisco;San Francisco/DATE;TEMP;HUM/g' >> dataset_final.csv
-
-
-#CreaVisualizacion = PythonOperator(
- #   task_id='extrae_mapa',
-  #  provide_context=True,
-   # python_callable=funcion nombre,
-    #op_kwargs ={'url': ""}
-    #dag=dag,
-#)
-
-
-#mongoimport -d nombreBDJ -c nombreColeccion --file /tmp/workflow/dataset_final.csv --type csv  --drop --port 27017 --headerline
-
-
-#delimitador ; .... no funciona correctamente cmabiar en consecuencia
-
-#docker run -p 28900:27017 97a9a3e85158 
-#mongoimport -d new -c a --file /tmp/workflow/dataset_unido.csv --type csv  --drop --port 28900 -f DATE,HUM,TEMP --host localhost
-
-#Dependencias
-#t1 >> [t2, t3]
+#Grafo DAG
 PrepararEntorno >> PrepararEntorno2
 PrepararEntorno2 >> [DatosA , DatosB]
 DatosA >> DescomprimirA
@@ -426,14 +396,3 @@ DescargarDockerfileV2 >> TestearApiV2
 DescargarTestV2 >> TestearApiV2
 TestearApiV2 >> CrearImagenV2
 CrearImagenV2 >> ArrancarDockerfileV2
-
-###Eliminar todo cvarpeta y docker
-#lanzar el flujoa  ver si crea correctamente modelo
-#con eso lanzar api rest y test a ver
-
-#poner codigo y test en github y bajarlo con airflow
-
-#Dockerfiule y historias
-
-
-#la copia de modelos completos est aen el critorio prosi
