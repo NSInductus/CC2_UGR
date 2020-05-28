@@ -57,8 +57,8 @@ if __name__ == '__main__':
     metrics = BinaryClassificationMetrics(predictionAndLabels)
 
     #Calcular AUC
-    evaluator = BinaryClassificationEvaluator()
-    evaluation = evaluator.evaluate(model.transform(testData))
+    evaluator = BinaryClassificationEvaluator(rawPredictionCol='prediction')
+    evaluation = evaluator.evaluate(model.transform(test))
     print('AUC:', evaluation)
 
     #Detener

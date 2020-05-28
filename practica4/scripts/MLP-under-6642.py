@@ -35,7 +35,6 @@ if __name__ == '__main__':
     seleccion = NoDataset.sample(False, sampleRatio)
     dataset = SiDataset.unionAll(seleccion)
 
-
     # Split the data into train and test
     splits = dataset.randomSplit([0.7, 0.3], 1234)
     train = splits[0]
@@ -58,11 +57,10 @@ if __name__ == '__main__':
     evaluator = MulticlassClassificationEvaluator(metricName='accuracy')
     print('Test set accuracy = ' + str(evaluator.evaluate(predictionAndLabels)))
 
-    # Instantiate metrics object
-    metrics = BinaryClassificationMetrics(predictionAndLabels)
-
-    # Area under ROC curve
-    print('Area under ROC = %s' % metrics.areaUnderROC)
+    #Calcular AUC
+    evaluator = BinaryClassificationEvaluator(rawPredictionCol='prediction')
+    evaluation = evaluator.evaluate(model.transform(test))
+    print('AUC:', evaluation)
 
     #Detener
     sc.stop()

@@ -49,5 +49,10 @@ if __name__ == '__main__':
     evaluator = MulticlassClassificationEvaluator(metricName='accuracy')
     print('Test set accuracy = ' + str(evaluator.evaluate(predictionAndLabels)))
 
+    #Calcular AUC
+    evaluator = BinaryClassificationEvaluator(rawPredictionCol='prediction')
+    evaluation = evaluator.evaluate(model.transform(test))
+    print('AUC:', evaluation)
+
     #Detener
     sc.stop()
